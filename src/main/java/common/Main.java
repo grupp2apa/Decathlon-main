@@ -14,6 +14,7 @@ public class Main {
 			selectDiscipline.inputSelection();
 
 			//testar att lägga kommentar - HEMANT
+			// Testar också - pelle
 		}
 		choice = false;
 	}
