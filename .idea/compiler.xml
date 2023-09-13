@@ -9,5 +9,8 @@
         <module name="DecathlonHeptathlon" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DecathlonHeptathlon" target="20" />
+    </bytecodeTargetLevel>
   </component>
 </project>
