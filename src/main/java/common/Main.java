@@ -19,6 +19,7 @@ public class Main {
 			// Test - Filip
 			// tjenna - Felix
 			// Hola - Anton
+			// Halloj - Martin
 		}
 		choice = false;
 	}
