@@ -16,6 +16,11 @@ public class Main {
 			//testar att lägga kommentar - HEMANT
 			// Testar också - pelle
 			// hej :o - Jasmijn
+			// Test - Filip
+			// tjenna - Felix
+			// Hola - Anton
+			// Halloj - Martin
+			// I did it - Mrudula
 		}
 		choice = false;
 	}
