@@ -13,6 +13,7 @@ public class Main {
 			SelectDiscipline selectDiscipline = new SelectDiscipline();
 			selectDiscipline.inputSelection();
 
+			//testar att lägga kommentar - HEMANT
 		}
 		choice = false;
 	}
