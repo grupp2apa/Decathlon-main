@@ -18,6 +18,7 @@ public class Main {
 			// hej :o - Jasmijn
 			// Test - Filip
 			// tjenna - Felix
+			// Hola - Anton
 		}
 		choice = false;
 	}
