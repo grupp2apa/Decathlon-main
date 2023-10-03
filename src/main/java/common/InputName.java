@@ -16,10 +16,13 @@ public class InputName {
 		while (active) {
 			System.out.println("Please enter the competitor's name:");
 			compName = sc.nextLine();
-			if (!compName.matches(".*[a-öA-ö]")) {
+			//	.*[a-?A-?]
+				if (!compName.matches("^[a-öA-Ö]+(\\s[a-öA-Ö]+)?(\\s[a-öA-Ö]+)?$")) {
 				System.out.println("Only use letters when putting in competitors name.");
 
-			} else {
+			} else if ((compName.length() >= 50)) {
+					System.out.println("Name is to long");
+				} else {
 				active = false;
 			}
 
