@@ -42,7 +42,7 @@ public class ExcelMaker {
             out.close();
             System.out.println("Excel file created successfully on disk.");
         }
-            catch (Exception e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
 

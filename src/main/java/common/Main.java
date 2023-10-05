@@ -48,7 +48,7 @@ public class Main {
 			excelPrinter.write();
 
 		}
-			catch (IOException e) {
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 
