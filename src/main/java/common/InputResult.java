@@ -11,8 +11,8 @@ public class InputResult {
 		while (active) {
 			System.out.println("Please enter the result:");
 			try {
-				String commaFix = sc.nextLine().replace(",",".");
-				inputResult = Double.parseDouble(commaFix);
+
+				inputResult = Double.parseDouble(sc.nextLine());
 				active = false;
 			} catch (Exception e) {
 				System.out.println("Invalid input, try again.");

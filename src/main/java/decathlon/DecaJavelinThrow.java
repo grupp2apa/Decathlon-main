@@ -20,10 +20,13 @@ public class DecaJavelinThrow {
 
 			try {
 				// Acceptable values.
+
 				if (distance < 0) {
-					System.out.println("Value too low");
+					//System.out.println("Value too low");
+					System.out.println("Negative input is invalid");
 					distance = inputResult.enterResult();
-				} else if (distance > 110) {
+				} //else if (distance > 110)
+				else if (distance > 220) {
 					System.out.println("Value too high");
 					distance = inputResult.enterResult();
 
