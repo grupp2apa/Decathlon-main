@@ -14,7 +14,7 @@ public class DecaJavelinThrow {
 	InputResult inputResult = new InputResult();
 
 	// Calculate the score based on distance and height. Measured in meters.
-	public void calculateResult(double distance) {
+	public int calculateResult(double distance) {
 
 		while (active) {
 
@@ -40,8 +40,8 @@ public class DecaJavelinThrow {
 				System.out.println("Please enter numbers");
 			}
 		}
-		System.out.println("The result is: " + score);
-
+		System.out.println("The score is: " + score);
+		return score; // Return the calculated score
 	}
 
 }

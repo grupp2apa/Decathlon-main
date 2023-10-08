@@ -13,7 +13,7 @@ public class DecaLongJump {
     InputResult inputResult = new InputResult();
 
     // Calculate the score based on distance and height. Measured in centimetres.
-    public void calculateResult(double distance) {
+    public int calculateResult(double distance) {
 
         while (active) {
 
@@ -41,7 +41,8 @@ public class DecaLongJump {
                 System.out.println("Please enter numbers");
             }
         }
-        System.out.println("The result is: " + score);
+        System.out.println("The score is: " + score);
+        return score; // Return the calculated score
     }
 
 }

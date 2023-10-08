@@ -14,7 +14,7 @@ public class Hep100MHurdles {
     InputResult inputResult = new InputResult();
 
     // Calculate the score based on time. All running events.
-    public void calculateResult(double runningTime) {
+    public int calculateResult(double runningTime) {
 
         while (active) {
 
@@ -40,7 +40,8 @@ public class Hep100MHurdles {
                 System.out.println("Please enter numbers");
             }
         }
-        System.out.println("The result is " + score);
+        System.out.println("The score is " + score);
+        return score; // Return the calculated score
 
     }
 
