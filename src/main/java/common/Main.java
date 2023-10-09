@@ -25,9 +25,10 @@ public class Main {
 			SelectDiscipline selectDiscipline = new SelectDiscipline();
 			selectDiscipline.inputSelection();
 			double competitorScore = selectDiscipline.getCompetitorScore();
+			String selectedDiscipline = selectDiscipline.selectedDiscipline(); // Get selected discipline
 
 			// Use ExcelMaker to collect competitor data
-			excelMaker.addCompetitorAndScore(competitorName, competitorScore);
+			excelMaker.addCompetitorAndScore(competitorName, competitorScore, selectedDiscipline);
 
 			System.out.println("Do you want to add more competitors? (yes/no)");
 			String userResponse = scanner.nextLine();
@@ -40,12 +41,16 @@ public class Main {
 		// Retrieve competitor data from ExcelMaker
 		List<String> competitorNames = excelMaker.getCompetitorNames();
 		List<Double> competitorScores = excelMaker.getCompetitorScores();
+		List<String> selectedDisciplines = excelMaker.getSelectedDisciplines(); // Retrieve selected disciplines
 
-		Object[][] competitorData = new Object[competitorNames.size()][2];
+
+		Object[][] competitorData = new Object[competitorNames.size()][3];
 
 		for (int i = 0; i < competitorNames.size(); i++) {
 			competitorData[i][0] = competitorNames.get(i);
 			competitorData[i][1] = competitorScores.get(i);
+			competitorData[i][2] = selectedDisciplines.get(i);
+
 		}
 
 		try {

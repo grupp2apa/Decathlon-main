@@ -25,6 +25,7 @@ public class SelectDiscipline {
 
 	InputResult inputResult = new InputResult();
 	Scanner sc = new Scanner(System.in);
+	private String selectedDiscipline;
 
 	Deca100M deca100M = new Deca100M();
 	Deca400M deca400M = new Deca400M();
@@ -57,23 +58,74 @@ public class SelectDiscipline {
 				double result = inputResult.enterResult();
 
 				switch (disciplineIndex) {
-					case 0 -> competitorScore = deca100M.calculateResult(result);
-					case 1 -> competitorScore = deca400M.calculateResult(result);
-					case 2 -> competitorScore = deca110MHurdles.calculateResult(result);
-					case 3 -> competitorScore = deca1500M.calculateResult(result);
-					case 4 -> competitorScore = decaLongJump.calculateResult(result);
-					case 5 -> competitorScore = highJump.calculateResult(result);
-					case 6 -> competitorScore = poleVault.calculateResult(result);
-					case 7 -> competitorScore = discusThrow.calculateResult(result);
-					case 8 -> competitorScore = decaJavelinThrow.calculateResult(result);
-					case 9 -> competitorScore = decaShotPut.calculateResult(result);
-					case 10 -> competitorScore = hep200M.calculateResult(result);
-					case 11 -> competitorScore = hep800M.calculateResult(result);
-					case 12 -> competitorScore = hep100MHurdles.calculateResult(result);
-					case 13 -> competitorScore = hepHighJump.calculateResult(result);
-					case 14 -> competitorScore = hepLongJump.calculateResult(result);
-					case 15 -> competitorScore = hepShotPut.calculateResult(result);
-					case 16 -> competitorScore = hepJavelinThrow.calculateResult(result);
+					case 0 -> {
+						competitorScore = deca100M.calculateResult(result);
+						selectedDiscipline = "Decathlon 100 meters";
+					}
+					case 1 -> {
+						competitorScore = deca400M.calculateResult(result);
+						selectedDiscipline = "Decathlon 400 meters";
+					}
+					case 2 -> {
+						competitorScore = deca110MHurdles.calculateResult(result);
+						selectedDiscipline = "Decathlon 110 meters hurdles";
+					}
+					case 3 -> {
+						competitorScore = deca1500M.calculateResult(result);
+						selectedDiscipline = "Decathlon 1500 meters";
+					}
+					case 4 -> {
+						competitorScore = decaLongJump.calculateResult(result);
+						selectedDiscipline = "Decathlon Long Jump";
+					}
+					case 5 -> {
+						competitorScore = highJump.calculateResult(result);
+						selectedDiscipline = "Decathlon High Jump";
+					}
+					case 6 -> {
+						competitorScore = poleVault.calculateResult(result);
+						selectedDiscipline = "Decathlon Pole Vault";
+					}
+					case 7 -> {
+						competitorScore = discusThrow.calculateResult(result);
+						selectedDiscipline = "Decathlon Discus Throw";
+					}
+					case 8 -> {
+						competitorScore = decaJavelinThrow.calculateResult(result);
+						selectedDiscipline = "Decathlon Javelin Throw";
+					}
+					case 9 -> {
+						competitorScore = decaShotPut.calculateResult(result);
+						selectedDiscipline = "Decathlon Shot Put";
+					}
+					case 10 -> {
+						competitorScore = hep200M.calculateResult(result);
+						selectedDiscipline = "Heptathlon 200 meters";
+					}
+					case 11 -> {
+						competitorScore = hep800M.calculateResult(result);
+						selectedDiscipline = "Heptathlon 800 meters";
+					}
+					case 12 -> {
+						competitorScore = hep100MHurdles.calculateResult(result);
+						selectedDiscipline = "Heptathlon 100 meters hurdles";
+					}
+					case 13 -> {
+						competitorScore = hepHighJump.calculateResult(result);
+						selectedDiscipline = "Heptathlon High Jump";
+					}
+					case 14 -> {
+						competitorScore = hepLongJump.calculateResult(result);
+						selectedDiscipline = "Heptathlon Long Jump";
+					}
+					case 15 -> {
+						competitorScore = hepShotPut.calculateResult(result);
+						selectedDiscipline = "Heptathlon Shot Put";
+					}
+					case 16 -> {
+						competitorScore = hepJavelinThrow.calculateResult(result);
+						selectedDiscipline = "Heptathlon Javelin Throw";
+					}
 				}
 			} else {
 				System.out.println("Invalid input, please select a valid discipline.");
@@ -83,6 +135,9 @@ public class SelectDiscipline {
 			System.out.println("Invalid input, please enter a number.");
 			inputSelection();
 		}
+	}
+	public String selectedDiscipline() {
+		return selectedDiscipline;
 	}
 
 	public double getCompetitorScore() {

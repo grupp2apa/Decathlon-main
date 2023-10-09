@@ -28,8 +28,12 @@ public class ExcelPrinter {
 		headerCell = headerRow.createCell(1);
 		headerCell.setCellValue("Score");
 
+		headerCell = headerRow.createCell(2);
+		headerCell.setCellValue("Discipline");
+
 		sheet.setColumnWidth(0, 15 * 356); // Width for the "Name" column
 		sheet.setColumnWidth(1, 15 * 156); // Width for the "Score" column
+		sheet.setColumnWidth(2, 15 * 556); // Width for the "Discipline" column
 
 		for (Object[] rowObject : data) {
 			int lastRow = sheet.getLastRowNum() + 1;
