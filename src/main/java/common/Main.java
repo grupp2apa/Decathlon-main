@@ -1,7 +1,9 @@
 package common;
-import java.io.IOException;
+
 import excel.ExcelMaker;
 import excel.ExcelPrinter;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,18 +12,22 @@ public class Main {
 	public static void main(String[] args) {
 		String excelFilePath = "D:/Decathlon-main/Resultat/Decathlon.excel.xlsx";
 
-		ExcelMaker excelMaker = new ExcelMaker(excelFilePath);
-		ExcelPrinter excelPrinter = null;
+		// Initialize ExcelMaker and ExcelPrinter objects
+		ExcelMaker excelMaker = new ExcelMaker();
+		ExcelPrinter excelPrinter = new ExcelPrinter(excelFilePath);
 
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
-
 			InputName inputName = new InputName();
 			String competitorName = inputName.addCompetitor();
-			excelMaker.addCompetitor(competitorName);
+
 			SelectDiscipline selectDiscipline = new SelectDiscipline();
 			selectDiscipline.inputSelection();
+			double competitorScore = selectDiscipline.getCompetitorScore();
+
+			// Use ExcelMaker to collect competitor data
+			excelMaker.addCompetitorAndScore(competitorName, competitorScore);
 
 			System.out.println("Do you want to add more competitors? (yes/no)");
 			String userResponse = scanner.nextLine();
@@ -29,31 +35,27 @@ public class Main {
 			if (userResponse.equalsIgnoreCase("no")) {
 				break;
 			}
-
 		}
 
+		// Retrieve competitor data from ExcelMaker
 		List<String> competitorNames = excelMaker.getCompetitorNames();
-		Object[][] competitorData = new Object[competitorNames.size()][1];
+		List<Double> competitorScores = excelMaker.getCompetitorScores();
+
+		Object[][] competitorData = new Object[competitorNames.size()][2];
 
 		for (int i = 0; i < competitorNames.size(); i++) {
 			competitorData[i][0] = competitorNames.get(i);
+			competitorData[i][1] = competitorScores.get(i);
 		}
-
-		excelMaker.createExcelFile();
 
 		try {
-
-			excelPrinter = new ExcelPrinter(excelFilePath);
+			// Add data to the ExcelPrinter and write it to the Excel file
 			excelPrinter.add(competitorData, "Competitors");
 			excelPrinter.write();
-
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			scanner.close();
 		}
-
-		scanner.close();
-
 	}
-
 }

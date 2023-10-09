@@ -16,14 +16,11 @@ public class InputResult {
 				active = false;
 			} catch (Exception e) {
 				System.out.println("Invalid input, try again.");
-				
+
 			}
 
 		}
 		return inputResult;
 	}
 
-	public double returnResult() {
-		return inputResult;
-	}
 }

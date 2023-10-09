@@ -1,68 +1,61 @@
 package excel;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class ExcelPrinter {
-
 	private XSSFWorkbook workbook;
-	private String excelFilePath; // Store the file path
+	private String excelFilePath;
 
-	// Constructor with file path parameter
-	public ExcelPrinter(String filePath) throws IOException {
+	public ExcelPrinter(String filePath) {
 		excelFilePath = filePath;
-
-		// Check if the file exists before attempting to open it
-		File excelFile = new File(excelFilePath);
-		if (!excelFile.exists()) {
-			System.out.println("Excel file does not exist at the specified path: " + excelFilePath);
-			// Handle this case, e.g., by creating the file if it doesn't exist
-		}
-
-		FileInputStream file = new FileInputStream(excelFilePath);
-		workbook = new XSSFWorkbook(file);
+		workbook = new XSSFWorkbook();
 	}
 
-	// In ExcelPrinter class, modify the add method
 	public void add(Object[][] data, String sheetName) {
-		XSSFSheet sheet = workbook.getSheet(sheetName);
-		if (sheet == null) {
-			sheet = workbook.createSheet(sheetName);
-		}
+		XSSFSheet sheet = workbook.createSheet(sheetName);
 
-		// Determine the last row to append data
-		int lastRow = sheet.getLastRowNum() + 1; // Increment by 1 to append new data
+		// Create a header row
+		Row headerRow = sheet.createRow(0);
+		Cell headerCell = headerRow.createCell(0);
+		headerCell.setCellValue("Name");
 
-		for (Object[] rowData : data) {
+		headerCell = headerRow.createCell(1);
+		headerCell.setCellValue("Score");
+
+		sheet.setColumnWidth(0, 15 * 356); // Width for the "Name" column
+		sheet.setColumnWidth(1, 15 * 156); // Width for the "Score" column
+
+		for (Object[] rowObject : data) {
+			int lastRow = sheet.getLastRowNum() + 1;
 			Row row = sheet.createRow(lastRow);
-			lastRow++;
-			int columnCount = 0;
-			for (Object field : rowData) {
-				Cell cell = row.createCell(columnCount);
-				columnCount++;
-				if (field instanceof String) {
-					cell.setCellValue((String) field);
-				} else if (field instanceof Integer) {
-					cell.setCellValue((Integer) field);
-				} else if (field instanceof Double) {
-					cell.setCellValue((Double) field);
+
+			for (int i = 0; i < rowObject.length; i++) {
+				Cell cell = row.createCell(i);
+
+				if (rowObject[i] instanceof String) {
+					cell.setCellValue((String) rowObject[i]);
+				} else if (rowObject[i] instanceof Double) {
+					cell.setCellValue((Double) rowObject[i]);
 				}
 			}
 		}
 	}
 
 	public void write() throws IOException {
-		System.out.println("Appending data to Excel file");
-		FileOutputStream out = new FileOutputStream(excelFilePath);
-		workbook.write(out);
-		workbook.close();
-		out.close();
+		try {
+			FileOutputStream out = new FileOutputStream(excelFilePath);
+			workbook.write(out);
+			out.close();
+			workbook.close();
+			System.out.println("Data has been written to Excel file successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

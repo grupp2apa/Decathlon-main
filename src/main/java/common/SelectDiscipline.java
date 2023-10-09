@@ -23,20 +23,19 @@ import heptathlon.HeptShotPut;
 
 public class SelectDiscipline {
 
-	int disciplineSelected;
 	InputResult inputResult = new InputResult();
 	Scanner sc = new Scanner(System.in);
+
 	Deca100M deca100M = new Deca100M();
 	Deca400M deca400M = new Deca400M();
 	Deca110MHurdles deca110MHurdles = new Deca110MHurdles();
 	Deca1500M deca1500M = new Deca1500M();
 	DecaLongJump decaLongJump = new DecaLongJump();
 	DecaHighJump highJump = new DecaHighJump();
+	DecaPoleVault poleVault = new DecaPoleVault();
 	DecaDiscusThrow discusThrow = new DecaDiscusThrow();
 	DecaShotPut decaShotPut = new DecaShotPut();
 	DecaJavelinThrow decaJavelinThrow = new DecaJavelinThrow();
-	DecaPoleVault poleVault = new DecaPoleVault();
-
 	Hep200M hep200M = new Hep200M();
 	Hep800M hep800M = new Hep800M();
 	Hep100MHurdles hep100MHurdles = new Hep100MHurdles();
@@ -44,55 +43,54 @@ public class SelectDiscipline {
 	HeptLongJump hepLongJump = new HeptLongJump();
 	HeptShotPut hepShotPut = new HeptShotPut();
 	HeptJavelinThrow hepJavelinThrow = new HeptJavelinThrow();
-	
-	//Receive input	of selection of discipline.
+
+	private double competitorScore;
 
 	public void inputSelection() {
-		System.out.println("Select discipline.");
+		System.out.println("Select a discipline by entering a number:");
+
 		printDisciplines();
 
 		try {
+			int disciplineIndex = Integer.parseInt(sc.nextLine()) - 1;
+			if (disciplineIndex >= 0 && disciplineIndex < 17) {
+				double result = inputResult.enterResult();
 
-			disciplineSelected = Integer.parseInt(sc.nextLine());
-			makeSelection();
-
-		} catch (Exception e) {
-			System.out.println("Invalid input, try again.");
-			System.out.println("");
+				switch (disciplineIndex) {
+					case 0 -> competitorScore = deca100M.calculateResult(result);
+					case 1 -> competitorScore = deca400M.calculateResult(result);
+					case 2 -> competitorScore = deca110MHurdles.calculateResult(result);
+					case 3 -> competitorScore = deca1500M.calculateResult(result);
+					case 4 -> competitorScore = decaLongJump.calculateResult(result);
+					case 5 -> competitorScore = highJump.calculateResult(result);
+					case 6 -> competitorScore = poleVault.calculateResult(result);
+					case 7 -> competitorScore = discusThrow.calculateResult(result);
+					case 8 -> competitorScore = decaJavelinThrow.calculateResult(result);
+					case 9 -> competitorScore = decaShotPut.calculateResult(result);
+					case 10 -> competitorScore = hep200M.calculateResult(result);
+					case 11 -> competitorScore = hep800M.calculateResult(result);
+					case 12 -> competitorScore = hep100MHurdles.calculateResult(result);
+					case 13 -> competitorScore = hepHighJump.calculateResult(result);
+					case 14 -> competitorScore = hepLongJump.calculateResult(result);
+					case 15 -> competitorScore = hepShotPut.calculateResult(result);
+					case 16 -> competitorScore = hepJavelinThrow.calculateResult(result);
+				}
+			} else {
+				System.out.println("Invalid input, please select a valid discipline.");
+				inputSelection();
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid input, please enter a number.");
 			inputSelection();
 		}
+	}
+
+	public double getCompetitorScore() {
+
+		return competitorScore;
 
 	}
 
-	// Check input of discipline.
-	public void makeSelection() {
-        switch (disciplineSelected) {
-            case 1 -> deca100M.calculateResult(inputResult.enterResult());
-            case 2 -> deca400M.calculateResult(inputResult.enterResult());
-            case 3 -> deca110MHurdles.calculateResult(inputResult.enterResult());
-            case 4 -> deca1500M.calculateResult(inputResult.enterResult());
-            case 5 -> decaLongJump.calculateResult(inputResult.enterResult());
-            case 6 -> highJump.calculateResult(inputResult.enterResult());
-            case 7 -> poleVault.calculateResult(inputResult.enterResult());
-            case 8 -> discusThrow.calculateResult(inputResult.enterResult());
-            case 9 -> decaJavelinThrow.calculateResult(inputResult.enterResult());
-            case 10 -> decaShotPut.calculateResult(inputResult.enterResult());
-            case 11 -> hep200M.calculateResult(inputResult.enterResult());
-            case 12 -> hep800M.calculateResult(inputResult.enterResult());
-            case 13 -> hep100MHurdles.calculateResult(inputResult.enterResult());
-            case 14 -> hepHighJump.calculateResult(inputResult.enterResult());
-            case 15 -> hepLongJump.calculateResult(inputResult.enterResult());
-            case 16 -> hepShotPut.calculateResult(inputResult.enterResult());
-            case 17 -> hepJavelinThrow.calculateResult(inputResult.enterResult());
-            default -> {
-                System.out.println("Invalid input, try again.");
-                System.out.println("");
-                inputSelection();
-            }
-        }
-	}
-
-	// Needs more stuff.
 	public void printDisciplines() {
 		System.out.println("1. Decathlon 100 meters. (Measured in seconds | range 0 - 35.60s)");
 		System.out.println("2. Decathlon 400 meters. (Measured in seconds | range 0 - 200s)");
@@ -112,5 +110,4 @@ public class SelectDiscipline {
 		System.out.println("16. Heptathlon Shot Put. (Measured in meters | range 0 - 200m)");
 		System.out.println("17. Heptathlon Javelin Throw. (Measured in meters | range 0 - 200m)");
 	}
-
 }

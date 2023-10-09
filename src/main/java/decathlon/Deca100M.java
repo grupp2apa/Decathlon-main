@@ -4,7 +4,7 @@ import common.*;
 
 public class Deca100M {
 
-	private int score;
+	public int score;
 	private double A = 25.4347;
 	private double B = 18;
 	private double C = 1.81;
