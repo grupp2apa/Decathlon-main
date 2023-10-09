@@ -11,7 +11,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		String excelFilePath = "D:/Decathlon-main/Resultat/Decathlon.excel.xlsx";
-
 		// Initialize ExcelMaker and ExcelPrinter objects
 		ExcelMaker excelMaker = new ExcelMaker();
 		ExcelPrinter excelPrinter = new ExcelPrinter(excelFilePath);
