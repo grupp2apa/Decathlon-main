@@ -47,8 +47,8 @@ public class Main {
 
 		for (int i = 0; i < competitorNames.size(); i++) {
 			competitorData[i][0] = competitorNames.get(i);
-			competitorData[i][1] = competitorScores.get(i);
-			competitorData[i][2] = selectedDisciplines.get(i);
+			competitorData[i][2] = competitorScores.get(i);
+			competitorData[i][1] = selectedDisciplines.get(i);
 
 		}
 
