@@ -29,7 +29,7 @@ public class Hep100MHurdles {
                 } //else if (runningTime > 26.4)
                 else if (runningTime > 52.8) {
                     System.out.println("Value too high");
-                    //runningTime = inputResult.enterResult();
+                    runningTime = inputResult.enterResult();
                 } else {
 
                     score = calc.calculateTrack(A, B, C, runningTime);

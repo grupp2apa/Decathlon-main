@@ -25,9 +25,10 @@ public class DecaPoleVault {
 					System.out.println("Negative input is invalid");
 				/*if (distance < 2) {
 					System.out.println("Value too low");
-					distance = inputResult.enterResult();*/
-
+					*/
+					distance = inputResult.enterResult();
 				} //else if (distance > 1000)
+
 				else if (distance > 2000){
 
 					System.out.println("Value too high");

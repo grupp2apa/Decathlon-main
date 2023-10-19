@@ -22,9 +22,10 @@ public class Hep200M {
 
                 if (runningTime < 0) {
                     System.out.println("Negative input is invalid");
+                    runningTime = inputResult.enterResult();
 				/*if (runningTime < 14) {
 					System.out.println("Value too low");
-					runningTime = inputResult.enterResult();*/
+					*/
                 } //else if (runningTime > 42.08)
                 else if (runningTime > 84.16) {
                     // get 1 point in 42.08sec
